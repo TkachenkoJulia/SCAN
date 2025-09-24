@@ -1,0 +1,41 @@
+.navMenu {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 49px;
+}
+
+.navMenuLink {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.navMenuLink:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navMenu {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 36px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 26px;
+    margin-bottom: 75px;
+  }
+
+  .navMenuLink {
+    width: 100%;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,266 @@
+.headerAuth {
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+@media (max-width: 1320px) {
+  .headerAuth {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerAuth {
+    width: 100%;
+  }
+}
+
+.headerAuthUnauthorized {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 18px;
+}
+
+.headerAuthAuthorized {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 128px;
+}
+
+.headerAuthInfo {
+  width: 175px;
+  height: auto;
+  min-height: 63px;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .headerAuthInfo {
+    max-width: 132px;
+  }
+}
+
+.headerAuthInfo p {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 9px;
+  margin: 0;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .headerAuthInfo p {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    flex-wrap: wrap;
+  }
+}
+.headerAuthInfoSpan {
+  font-family: "Inter-Bold", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: black;
+  font-weight: bold;
+}
+.headerAuthInfoSpanGreen {
+  color: #8ac540;
+}
+
+.headerAuthRegisterLink {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+}
+
+.headerAuthLoginButton {
+  width: 65px;
+  height: 26px;
+  background-color: #7ce3e1;
+  color: #000;
+  border-radius: 5px;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.headerAuthSeparator {
+  width: 2px;
+  height: 26px;
+  background-color: #029491;
+}
+
+.headerAuthProfile {
+  width: 111px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.headerAuthProfileInfo {
+  width: calc(95% - 32px);
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.headerAuthProfileInfo p {
+  width: 100%;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #000;
+  text-align: right;
+  margin: 0;
+}
+.headerAuthProfileLogout {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  cursor: pointer;
+  appearance: none;
+  background: transparent;
+  border: none;
+}
+
+.headerAuthProfileImage {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.burgerMenu {
+  width: 30px;
+  height: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  cursor: pointer;
+  background: none;
+  appearance: none;
+  border: none;
+  padding: 0;
+  z-index: 9000;
+}
+.burgerMenu span {
+  width: 100%;
+  height: 5px;
+  background-color: #029491;
+  transition: all 0.2s ease-in;
+}
+.burgerMenu.active span {
+  background-color: #fff;
+}
+.burgerMenu.active span:nth-child(1) {
+  transform: translateY(10px) rotate(-45deg);
+}
+.burgerMenu.active span:nth-child(2) {
+  opacity: 0;
+}
+.burgerMenu.active span:nth-child(3) {
+  transform: translateY(-10px) rotate(45deg);
+}
+
+.menuOverlay {
+  display: none;
+}
+.menuOverlay.active {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #029491;
+  z-index: 1000;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  z-index: 8000;
+}
+.mobileMenu {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-top: 138px;
+}
+
+.authHeaderContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mobileLink {
+  margin: 0 auto;
+}
+.mobileLink.registerLink {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+.mobileLink.loginButton {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  width: 295px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #7ce3e1;
+  border-radius: 5px;
+  appearance: none;
+  border: none;
+  transition: all 0.2s ease-in;
+  margin-bottom: 20px;
+}
+.mobileLink.logoutButton {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  width: 295px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #d6d6d6;
+  border-radius: 5px;
+  appearance: none;
+  border: none;
+  transition: all 0.2s ease-in;
+  margin-bottom: 20px;
+}

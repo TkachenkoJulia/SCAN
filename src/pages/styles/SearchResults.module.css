@@ -1,0 +1,138 @@
+.SearchResults {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+  margin-top: 69px;
+}
+.SearchResultsTop {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsTop {
+    flex-direction: column;
+  }
+}
+
+.SearchResultsTopLeft,
+.SearchResultsTopLeft {
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsTopLeft,
+  .SearchResultsTopRight {
+    width: 100%;
+  }
+  .SearchResultsTopLeft {
+    justify-content: start;
+    margin-bottom: 21px;
+  }
+  .SearchResultsTopRight img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.SearchResultsTitle {
+  font-family: "Ferry-Black", Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 3.8vw, 3rem);
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 36px;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsTitle {
+    font-size: 28px;
+    margin-bottom: 21px;
+  }
+}
+
+.SearchResultsSubtitle {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsSubtitle {
+    font-size: 18px;
+  }
+}
+
+.SearchResultsBottom {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 27px;
+}
+.SearchResultsBottomData {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-direction: column;
+  gap: 107px;
+  flex-wrap: wrap;
+}
+.SearchResultsBottomTitle {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  gap: 17px;
+  margin-bottom: 27px;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsBottomTitle {
+    margin-bottom: 31px;
+  }
+}
+
+.SearchResultsBottomTitle h2 {
+  font-family: "Ferry-Black", Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: #000;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .SearchResultsBottomTitle h2 {
+    font-size: 28px;
+  }
+}
+
+.SearchResultsBottomTitle p {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: #949494;
+  margin: 0;
+}

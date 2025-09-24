@@ -1,0 +1,42 @@
+.SearchList {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+}
+.SearchListCards {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .SearchListCards {
+    grid-template-columns: 1fr;
+  }
+}
+
+.showMoreBtn {
+  width: 305px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #5970ff;
+  color: #fff;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  margin-top: 38px;
+  margin-bottom: 109px;
+  margin-left: auto;
+  margin-right: auto;
+  appearance: none;
+  border: none;
+}

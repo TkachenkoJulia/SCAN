@@ -1,0 +1,98 @@
+.footer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #029491;
+}
+
+.footerContainer {
+  width: 1320px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+@media (max-width: 1320px) {
+  .footerContainer {
+    width: 95%;
+  }
+}
+
+@media (max-width: 768px) {
+  .footerContainer {
+    width: 85%;
+  }
+}
+
+.footerLogo {
+  width: 141px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  .footerLogo {
+    width: 111px;
+  }
+}
+
+.footerRight {
+  width: fit-content;
+  flex-direction: column;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footerMenu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .footerMenu {
+    margin: 0;
+    gap: 5px;
+  }
+}
+
+.footerMenuItem {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footerMenuLink {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.footerMenuLink:hover {
+  text-decoration: underline;
+}
+
+.footerMenuCopyright {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  color: #fff;
+  text-align: right;
+}

@@ -1,0 +1,127 @@
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  padding: 19px 30px 30px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 500px;
+}
+
+@media (max-width: 490px) {
+  .card {
+    padding: 14px 14px 14px 14px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 14px;
+  font-size: 14px;
+  color: #8c8c8c;
+  margin-bottom: 24px;
+  flex: 0 0 auto; /* Не растягивается */
+}
+
+.date,
+.source {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: #949494;
+}
+.source {
+  text-decoration: underline;
+}
+
+.title {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex: 0 0 auto; /* Не растягивается */
+}
+
+.title h3 {
+  margin: 0;
+}
+
+.tags {
+  display: flex;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  justify-content: start;
+  gap: 8px;
+  margin-bottom: 4px;
+  flex: 0 0 auto; /* Не растягивается */
+}
+.tag {
+  width: fit-content;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffb64f;
+  color: #000000;
+  border-radius: 5px;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  padding: 4px 14px;
+  font-weight: 400;
+}
+.content {
+  font-size: 15px;
+  color: #2d2d2d;
+  line-height: 1.5;
+  flex: 1; /* Занимает оставшееся пространство */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  max-height: 200px;
+  margin-bottom: 32px;
+}
+
+.content p {
+  margin: 0 0 12px 0;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+}
+
+.content p:last-child {
+  margin-bottom: 0;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto; /* Прижимается к низу */
+  flex: 0 0 auto; /* Не растягивается */
+}
+.readBtn {
+  width: 223px;
+  height: 46px;
+  background: #7ce3e1;
+  border-radius: 16px;
+  color: #000;
+  border: none;
+  padding: 14px 33px;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.readBtn:hover {
+  background: #338d9e;
+}
+.wordCount {
+  color: #949494;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}

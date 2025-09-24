@@ -1,0 +1,496 @@
+@import "../../global.module.css";
+
+.firstScreen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 109px;
+}
+
+@media (max-width: 768px) {
+  .firstScreen {
+    margin-bottom: 55px;
+  }
+}
+
+.firstScreenLeft {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 70px;
+}
+
+.firstScreenRight {
+  width: 50%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.firstScreenRight img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .firstScreenLeft {
+    width: 100%;
+    gap: 19px;
+    margin-bottom: 32px;
+  }
+  .firstScreenRight {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+}
+
+.firstScreenTitle {
+  font-family: "Ferry-Black", Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 3.8vw, 3rem);
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .firstScreenTitle {
+    font-size: 28px;
+  }
+}
+
+.firstScreenLeftInfoText {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .firstScreenLeftInfoText {
+    font-size: 18px;
+  }
+}
+
+.firstScreenButton {
+  width: 335px;
+  height: 60px;
+  background-color: #5970ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  color: #fff;
+  appearance: none;
+  border: none;
+  border-radius: 16px;
+}
+
+@media (max-width: 768px) {
+  .firstScreenButton {
+    width: 100%;
+    font-size: 20px;
+  }
+}
+
+.firstScreenLeftInfo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.screenTitle {
+  font-family: "Ferry-Black", Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 3.8vw, 3rem);
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 70px;
+}
+
+@media (max-width: 768px) {
+  .screenTitle {
+    font-size: 28px;
+    margin-bottom: 32px;
+    width: 72%;
+  }
+}
+
+.sliderScreen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-bottom: 70px;
+}
+
+.manScreen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 107px;
+}
+@media (max-width: 768px) {
+  .manScreen img:nth-child(1) {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .manScreen img:nth-child(2) {
+    display: none;
+  }
+}
+
+.tarifScreen {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-bottom: 118px;
+}
+
+@media (max-width: 768px) {
+  .tarifScreen {
+    margin-bottom: 43px;
+  }
+}
+
+.tarifScreenContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1320px) {
+  .tarifScreenContainer {
+    gap: 43px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tarifScreenContainer {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 43px;
+  }
+}
+
+.tarifScreenItem {
+  width: 32%;
+  height: auto;
+  min-height: 540px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+}
+
+@media (max-width: 1320px) {
+  .tarifScreenItem {
+    width: 48%;
+  }
+}
+
+@media (max-width: 1190px) {
+  .tarifScreenItem {
+    width: 100%;
+    min-height: 400px;
+  }
+}
+
+.tarifScreenItemHeading {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 30px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.tarifScreenItemHeading div {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.tarifScreenItemHeadingTitle {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 30px;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .tarifScreenItemHeadingTitle {
+    font-size: 20px;
+  }
+}
+
+.tarifScreenItemHeadingText {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+
+.tarifScreenItemTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.tarifScreenItemBadge {
+  background: #3ba5e0;
+  color: #fff;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 3px 13px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: absolute;
+  top: 0;
+  right: 10px;
+}
+
+@media (max-width: 1190px) {
+  .tarifScreenItemBadge {
+    top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tarifScreenItemBadge {
+    display: none;
+  }
+}
+
+.tarifScreenItemHeading img {
+  width: 20%;
+  height: auto;
+  object-fit: contain;
+}
+
+.tarifScreenItemInfoText {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.tarifScreenItemBody {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 15px 30px;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .tarifScreenItemBody {
+    padding: 20px 24px 31px 24px;
+  }
+}
+
+.tarifScreenItemPrice {
+  width: 100%;
+  height: auto;
+  min-height: 60px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .tarifScreenItemPrice {
+    margin-bottom: 15px;
+  }
+}
+
+.tarifScreenItemPrice div {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .tarifScreenItemPrice div {
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+}
+
+.tarifScreenItemPriceText {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+.tarifScreenItemPriceTextDeleted {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: line-through;
+  font-size: 25px;
+}
+.tarifScreenItemPriceInfoText {
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+.tarifScreenItemInfo {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.tarifScreenItemInfo p {
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: normal;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 10px;
+}
+.tarifScreenItemInfo ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tarifScreenItemInfo ul li {
+  position: relative;
+  padding-left: 30px;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  color: #000;
+  text-align: left;
+  margin: 0;
+}
+.tarifScreenItemInfo ul li::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background: url("../../assets/icons/check.svg") no-repeat center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tarifScreenItemButton {
+  width: 100%;
+  height: auto;
+  min-height: 60px;
+  padding-top: 18px;
+  padding-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+}
+.tarifScreenItemButtonGray {
+  background-color: #d2d2d2;
+  color: #000;
+}
+.tarifScreenItemButtonBlue {
+  background-color: #5970ff;
+  color: #fff;
+}
+.tarifScreenItemBeginner {
+  border: 1px solid #ffb64f;
+}
+.tarifScreenItemBeginner .tarifScreenItemHeading {
+  background-color: #ffb64f;
+}
+
+.tarifScreenItemPro .tarifScreenItemHeading {
+  background-color: #7ce3e1;
+}
+
+.tarifScreenItemBusiness .tarifScreenItemHeading {
+  background-color: #000;
+}
+
+.tarifScreenItemBusiness .tarifScreenItemHeadingTitle,
+.tarifScreenItemBusiness .tarifScreenItemHeadingText {
+  color: #fff;
+}

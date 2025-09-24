@@ -1,0 +1,32 @@
+.header {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #fff;
+}
+
+.headerContainer {
+  width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: 1320px) {
+  .headerContainer {
+    width: 95%;
+  }
+}
+
+.headerLogo {
+  width: 140px;
+  height: 63px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

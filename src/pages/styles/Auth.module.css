@@ -1,0 +1,82 @@
+.authMainContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+  .authMainContainer {
+    flex-direction: column;
+    padding-top: 0px;
+  }
+}
+
+.authLeft {
+  width: 60%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .authLeft {
+    width: 100%;
+  }
+  .authLeft img {
+    display: none;
+  }
+}
+.authRight {
+  width: 40%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 768px) {
+  .authRight {
+    width: 100%;
+    margin-bottom: 49px;
+  }
+}
+
+.authTitle {
+  font-family: "Ferry-Black", Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  font-weight: bold;
+  color: #000;
+  text-align: left;
+  margin: 0;
+  margin-bottom: 25px;
+}
+@media (max-width: 768px) {
+  .authTitle {
+    font-size: 22px;
+    margin-bottom: 95px;
+  }
+}
+
+.authMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .authMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    margin-bottom: 79px;
+  }
+  .authMobile img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}

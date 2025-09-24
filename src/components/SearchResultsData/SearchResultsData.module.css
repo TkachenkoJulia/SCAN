@@ -1,0 +1,327 @@
+.SearchResultsData {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.SearchResultsDataCustom {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
+.sliderContainer {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.stickyColWrapper {
+  background: #009999;
+  min-width: 133px;
+  max-width: 133px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.stickyCol {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 17px 28px;
+}
+.stickyCellHeader {
+  color: #fff;
+  font-weight: bold;
+  padding: 16px 8px;
+  background: #009999;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+}
+.stickyCell {
+  color: #fff;
+  padding: 16px 8px;
+  background: #009999;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+}
+
+.carouselWrapper {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  border: 2px solid #009999;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.carouselButtons {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  z-index: 1000;
+}
+.carouselBtn {
+  background: transparent;
+  color: #4d4d4d;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  margin: 0 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carouselBtn:disabled {
+  background: #b2dfdf;
+  cursor: default;
+}
+
+.scrollArea {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  flex: 1;
+  /* Скрываем скроллбар для WebKit браузеров */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.scrollArea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+.dataRowHeader,
+.dataRow {
+  display: flex;
+  flex-direction: row;
+}
+.dataCellHeader {
+  background: #fff;
+  color: #000;
+  min-width: 180px;
+  max-width: 180px;
+  padding: 16px 8px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+.dataCell {
+  background: #fff;
+  color: #000;
+  min-width: 180px;
+  max-width: 180px;
+  padding: 16px 8px;
+  border-right: 1px solid #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter-Regular", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+.loader,
+.noData {
+  width: 100%;
+  text-align: center;
+  padding: 32px;
+  color: #666;
+  font-size: 18px;
+}
+
+/* Мобильная версия */
+.mobileVersion {
+  display: none;
+}
+
+.desktopVersion {
+  display: flex;
+  width: 95%;
+  margin: 0 auto;
+}
+
+/* Мобильная карточка */
+.mobileCard {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 0 50px;
+  width: calc(100% - 100px);
+}
+
+.mobileHeader {
+  background: #3ba5b6;
+  display: table;
+  width: 100%;
+  color: #fff;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  table-layout: fixed;
+}
+
+.mobileHeaderCell {
+  display: table-cell;
+  width: 33.333%;
+  padding: 16px 8px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  vertical-align: middle;
+}
+
+.mobileHeaderCell:last-child {
+  border-right: none;
+}
+
+.mobileData {
+  display: table;
+  width: 100%;
+  background: #fff;
+  color: #000;
+  font-family: "Inter-Medium", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  table-layout: fixed;
+}
+
+.mobileDataCell {
+  display: table-cell;
+  width: 33.333%;
+  padding: 16px 8px;
+  text-align: center;
+  border-right: 1px solid #e0e0e0;
+  vertical-align: middle;
+}
+
+.mobileDataCell:last-child {
+  border-right: none;
+}
+
+/* Навигация */
+.mobileNavigation {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  width: 100%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.mobileNavBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.mobileNavBtn:hover:not(.disabled) {
+  background: transparent;
+  color: #333;
+}
+
+.mobileNavBtn.disabled {
+  background: transparent;
+  color: #cbcbcb;
+  cursor: not-allowed;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .desktopVersion {
+    display: none;
+  }
+
+  .mobileVersion {
+    display: block;
+    width: 100%;
+    position: relative;
+  }
+
+  .SearchResultsDataCustom {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+/* Дополнительные стили для очень маленьких экранов */
+@media (max-width: 425px) {
+  .mobileCard {
+    margin: 0 40px;
+    width: calc(100% - 80px);
+  }
+
+  .mobileHeaderCell,
+  .mobileDataCell {
+    padding: 12px 4px;
+    font-size: 14px;
+  }
+
+  .mobileNavigation {
+    padding: 0 5px;
+  }
+
+  .mobileNavBtn {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 375px) {
+  .mobileCard {
+    margin: 0 35px;
+    width: calc(100% - 70px);
+  }
+
+  .mobileHeaderCell,
+  .mobileDataCell {
+    padding: 10px 2px;
+    font-size: 13px;
+  }
+
+  .mobileNavBtn {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+}
