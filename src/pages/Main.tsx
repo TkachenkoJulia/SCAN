@@ -9,7 +9,7 @@ import clsx from "clsx";
 import Lamp from "../assets/icons/lamp.svg";
 import Darts from "../assets/icons/darts.svg";
 import Laptop from "../assets/icons/laptop.svg";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 

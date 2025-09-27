@@ -4,22 +4,47 @@ import SearchResultsData from "../components/SearchResultsData/SearchResultsData
 import SearchResultsList from "../components/SearchList/SearchList";
 
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 import SearchResultsWoman from "../assets/images/searchResults.png";
 
 const PAGE_SIZE = 10;
 
+type DocType = {
+  id: string;
+  issueDate: string;
+  source: { name: string };
+  title: { text: string };
+  content: { markup: string };
+  url: string;
+  attributes: {
+    isTechNews: boolean;
+    isAnnouncement: boolean;
+    isDigest: boolean;
+    wordCount: number;
+  };
+};
+
+type HistogramDataType = {
+  date: "string";
+  value: "number";
+};
+
+type HistogramType = {
+  histogramType: string;
+  data: HistogramDataType[];
+};
+
 const SearchResults: React.FC = () => {
-  const [histograms, setHistograms] = useState<any[]>([]);
+  const [histograms, setHistograms] = useState<HistogramType[]>([]);
   const [ids, setIds] = useState<string[]>([]);
-  const [docs, setDocs] = useState<any[]>([]);
+  const [docs, setDocs] = useState<DocType[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const location = useLocation() as {
-    state?: { params?: any; histograms?: any[] };
+    state?: { params?: any; histograms?: HistogramType[] };
   };
   const [params, setParams] = useState<any>(null);
 

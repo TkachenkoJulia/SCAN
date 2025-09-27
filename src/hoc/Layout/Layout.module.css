@@ -1,1 +1,13 @@
-@import url("../../global.css")
+.appLayout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+}

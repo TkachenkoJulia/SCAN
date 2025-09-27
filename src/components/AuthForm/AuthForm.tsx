@@ -7,7 +7,7 @@ import {
   setProfileInfo,
   setUserLogin,
 } from "../../store/authSlice";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import Google from "../../assets/images/google.png";
 import Facebook from "../../assets/images/facebook.png";
 import Yandex from "../../assets/images/yandex.png";
@@ -25,8 +25,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth);
 
-  const isFormValid =
-    loginValue.trim() && password.trim() && !loginError && !passwordError;
+  const isFormValid = Boolean(
+    loginValue.trim() && password.trim() && !loginError && !passwordError
+  );
 
   const navigate = useNavigate();
 
@@ -60,8 +61,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isFormValid || auth.status === "loading") return;
-
+    if (!isFormValid) return;
     setLoginError("");
     setPasswordError("");
 
@@ -71,6 +71,10 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
       );
       if (loginThunk.fulfilled.match(resultAction)) {
         const token = resultAction.payload.accessToken;
+
+        localStorage.setItem("userLogin", loginValue);
+        dispatch(setUserLogin(loginValue));
+
         const res = await fetch(
           "https://gateway.scan-interfax.ru/api/v1/account/info",
           {
@@ -78,14 +82,8 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
           }
         );
 
-        let profileData = undefined;
-        try {
-          profileData = await res.json();
-        } catch (jsonError) {
-          const text = await res.text();
-          console.error(text);
-        }
-        if (profileData && profileData.eventFiltersInfo) {
+        const profileData = await res.json().catch(() => ({}));
+        if (profileData?.eventFiltersInfo) {
           dispatch(
             setProfileInfo({
               usedCompanyCount: profileData.eventFiltersInfo.usedCompanyCount,
@@ -93,8 +91,6 @@ const AuthForm: React.FC<AuthFormProps> = ({ action }) => {
             })
           );
         }
-
-        dispatch(setUserLogin(loginValue));
       } else if (loginThunk.rejected.match(resultAction)) {
         const errorMessage =
           (resultAction.payload as string) ||

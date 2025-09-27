@@ -1,0 +1,153 @@
+const Spinner = ({ size = 24 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    aria-label="Загрузка"
+    role="status"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g fill="#8b8b8b">
+      <circle cx="12" cy="3" r="1">
+        <animate
+          id="spinner_7Z73"
+          begin="0;spinner_tKsu.end-0.5s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="16.5" cy="4.21" r="1">
+        <animate
+          id="spinner_Wd87"
+          begin="spinner_7Z73.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="7.5" cy="4.21" r="1">
+        <animate
+          id="spinner_tKsu"
+          begin="spinner_9Qlc.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="19.79" cy="7.5" r="1">
+        <animate
+          id="spinner_lMMO"
+          begin="spinner_Wd87.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="4.21" cy="7.5" r="1">
+        <animate
+          id="spinner_9Qlc"
+          begin="spinner_Khxv.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="21" cy="12" r="1">
+        <animate
+          id="spinner_5L9t"
+          begin="spinner_lMMO.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="3" cy="12" r="1">
+        <animate
+          id="spinner_Khxv"
+          begin="spinner_ld6P.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="19.79" cy="16.5" r="1">
+        <animate
+          id="spinner_BfTD"
+          begin="spinner_5L9t.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="4.21" cy="16.5" r="1">
+        <animate
+          id="spinner_ld6P"
+          begin="spinner_XyBs.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="16.5" cy="19.79" r="1">
+        <animate
+          id="spinner_7gAK"
+          begin="spinner_BfTD.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="7.5" cy="19.79" r="1">
+        <animate
+          id="spinner_XyBs"
+          begin="spinner_HiSl.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <circle cx="12" cy="21" r="1">
+        <animate
+          id="spinner_HiSl"
+          begin="spinner_7gAK.begin+0.1s"
+          attributeName="r"
+          calcMode="spline"
+          dur="0.6s"
+          values="1;2;1"
+          keySplines=".27,.42,.37,.99;.53,0,.61,.73"
+        />
+      </circle>
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        dur="6s"
+        values="360 12 12;0 12 12"
+        repeatCount="indefinite"
+      />
+    </g>
+  </svg>
+);
+export default Spinner;

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import styles from "./HeaderAuth.module.css";
 import clsx from "clsx";
 import { useState } from "react";
@@ -6,6 +6,7 @@ import NavMenu from "../NavMenu/NavMenu";
 import Logo from "../Logo/Logo";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { logout } from "../../store/authSlice";
+import LoaderCard from "../LoaderCard/LoaderCard";
 
 import Avatar from "../../assets/images/avatar.png";
 
@@ -45,29 +46,33 @@ const HeaderAuth: React.FC<HeaderAuthProps> = ({ status, isMobile }) => {
             </div>
           ) : (
             <div className={styles.headerAuthAuthorized}>
-              <div className={styles.headerAuthInfo}>
-                <p>
-                  Использовано компаний{" "}
-                  <span
-                    className={clsx(styles.headerAuthInfoSpan)}
-                    id="usedCompanies"
-                  >
-                    {usedCompanyCount ?? "-"}
-                  </span>
-                </p>
-                <p>
-                  Лимит по компаниям{" "}
-                  <span
-                    id="limitCompanies"
-                    className={clsx(
-                      styles.headerAuthInfoSpan,
-                      styles.headerAuthInfoSpanGreen
-                    )}
-                  >
-                    {companyLimit ?? "-"}
-                  </span>
-                </p>
-              </div>
+              {usedCompanyCount === undefined || companyLimit === undefined ? (
+                <LoaderCard minHeight={70} />
+              ) : (
+                <div className={styles.headerAuthInfo}>
+                  <p>
+                    Использовано компаний{" "}
+                    <span
+                      className={clsx(styles.headerAuthInfoSpan)}
+                      id="usedCompanies"
+                    >
+                      {usedCompanyCount}
+                    </span>
+                  </p>
+                  <p>
+                    Лимит по компаниям{" "}
+                    <span
+                      id="limitCompanies"
+                      className={clsx(
+                        styles.headerAuthInfoSpan,
+                        styles.headerAuthInfoSpanGreen
+                      )}
+                    >
+                      {companyLimit}
+                    </span>
+                  </p>
+                </div>
+              )}
               <div className={styles.headerAuthProfile}>
                 <div className={styles.headerAuthProfileInfo}>
                   <p id="userName">{userLogin ?? ""}</p>
@@ -92,29 +97,33 @@ const HeaderAuth: React.FC<HeaderAuthProps> = ({ status, isMobile }) => {
         <>
           <div className={styles.authHeaderContainer}>
             <Logo isMobile={true} isMenuOpen={isMenuOpen} />
-            <div className={styles.headerAuthInfo}>
-              <p>
-                Использовано компаний{" "}
-                <span
-                  className={clsx(styles.headerAuthInfoSpan)}
-                  id="usedCompanies"
-                >
-                  {usedCompanyCount ?? "-"}
-                </span>
-              </p>
-              <p>
-                Лимит по компаниям{" "}
-                <span
-                  id="limitCompanies"
-                  className={clsx(
-                    styles.headerAuthInfoSpan,
-                    styles.headerAuthInfoSpanGreen
-                  )}
-                >
-                  {companyLimit ?? "-"}
-                </span>
-              </p>
-            </div>
+            {usedCompanyCount === undefined || companyLimit === undefined ? (
+              <LoaderCard minHeight={70} />
+            ) : (
+              <div className={styles.headerAuthInfo}>
+                <p>
+                  Использовано компаний{" "}
+                  <span
+                    className={clsx(styles.headerAuthInfoSpan)}
+                    id="usedCompanies"
+                  >
+                    {usedCompanyCount}
+                  </span>
+                </p>
+                <p>
+                  Лимит по компаниям{" "}
+                  <span
+                    id="limitCompanies"
+                    className={clsx(
+                      styles.headerAuthInfoSpan,
+                      styles.headerAuthInfoSpanGreen
+                    )}
+                  >
+                    {companyLimit}
+                  </span>
+                </p>
+              </div>
+            )}
             <button
               className={clsx(styles.burgerMenu, isMenuOpen && styles.active)}
               onClick={toggleMenu}

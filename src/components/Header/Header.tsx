@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store';
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 import NavMenu from "../NavMenu/NavMenu";
 import HeaderAuth from "../HeaderAuth/HeaderAuth";
 import styles from "./Header.module.css";
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
             <NavMenu />
           </>
         )}
-        {auth.status === 'authorized' ? (
+        {auth.status === "authorized" ? (
           <HeaderAuth status="authorized" isMobile={isMobile} />
         ) : (
           <HeaderAuth status="unauthorized" isMobile={isMobile} />

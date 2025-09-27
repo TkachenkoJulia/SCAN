@@ -1,7 +1,19 @@
 import React, { useRef, useState } from "react";
 import styles from "./SearchResultsData.module.css";
+import Spinner from "../Spinner/Spinner";
+
+type HistogramDataType = {
+  date: "string";
+  value: "number";
+};
+
+type HistogramType = {
+  histogramType: string;
+  data: HistogramDataType[];
+};
+
 interface SearchResultsDataProps {
-  histograms: any[];
+  histograms: HistogramType[];
 }
 
 const SearchResultsData: React.FC<SearchResultsDataProps> = ({
@@ -10,7 +22,8 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
   const scrollRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const periods = histograms[0]?.data?.map((point: any) => point.date) || [];
+  const periods =
+    histograms[0]?.data?.map((point: HistogramDataType) => point.date) || [];
   const totalDocs =
     histograms.find((h) => h.histogramType === "totalDocuments")?.data || [];
   const risks =
@@ -20,7 +33,6 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
     return <div className={styles.noData}>Нет данных для отображения</div>;
   }
 
-  // Навигация для мобильной версии
   const scrollMobile = (direction: "left" | "right") => {
     if (direction === "left" && currentIndex > 0) {
       setCurrentIndex(currentIndex - 1);
@@ -29,10 +41,9 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
     }
   };
 
-  // Навигация для десктопной версии
   const scrollDesktop = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 180; // ширина одного блока
+      const scrollAmount = 180;
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -40,13 +51,16 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
     }
   };
 
+  const isLoading = !histograms?.some(
+    (h) => Array.isArray(h?.data) && h.data.length > 0
+  );
+
   const currentPeriod = periods[currentIndex];
   const currentTotal = totalDocs[currentIndex]?.value || 0;
   const currentRisks = risks[currentIndex]?.value || 0;
 
   return (
     <div className={styles.SearchResultsDataCustom}>
-      {/* Десктопная версия */}
       <div className={styles.desktopVersion}>
         <div className={styles.carouselButtons}>
           <button
@@ -72,6 +86,12 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
           </div>
           <div className={styles.carouselWrapper}>
             <div className={styles.scrollArea} ref={scrollRef}>
+              {isLoading && (
+                <div className={styles.loadingData}>
+                  <Spinner size={36} />{" "}
+                  <p className={styles.loadingText}>Загружаем данные</p>
+                </div>
+              )}
               <div className={styles.dataRowHeader}>
                 {periods.map((date: string, idx: number) => (
                   <div className={styles.dataCellHeader} key={idx}>
@@ -80,14 +100,14 @@ const SearchResultsData: React.FC<SearchResultsDataProps> = ({
                 ))}
               </div>
               <div className={styles.dataRow}>
-                {totalDocs.map((item: any, idx: number) => (
+                {totalDocs.map((item: HistogramDataType, idx: number) => (
                   <div className={styles.dataCell} key={idx}>
                     {item.value}
                   </div>
                 ))}
               </div>
               <div className={styles.dataRow}>
-                {risks.map((item: any, idx: number) => (
+                {risks.map((item: HistogramDataType, idx: number) => (
                   <div className={styles.dataCell} key={idx}>
                     {item.value}
                   </div>

@@ -1,8 +1,23 @@
 import React from "react";
 import styles from "./PublicationCard.module.css";
 
+type DocType = {
+  id: string;
+  issueDate: string;
+  source: { name: string };
+  title: { text: string };
+  content: { markup: string };
+  url: string;
+  attributes: {
+    isTechNews: boolean;
+    isAnnouncement: boolean;
+    isDigest: boolean;
+    wordCount: number;
+  };
+};
+
 interface PublicationCardProps {
-  doc: any;
+  doc: DocType;
 }
 
 const parseContentMarkup = (markup: string) => {

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SearchParams {
   [key: string]: any;
@@ -7,6 +7,21 @@ export interface SearchParams {
 export interface HistogramPoint {
   date: string;
   value: number;
+}
+
+export interface Doc {
+  id: string;
+  issueDate: string;
+  source: { name: string };
+  title: { text: string };
+  content: { markup: string };
+  url: string;
+  attributes: {
+    isTechNews: boolean;
+    isAnnouncement: boolean;
+    isDigest: boolean;
+    wordCount: number;
+  };
 }
 
 export interface Histogram {
@@ -18,7 +33,7 @@ export interface SearchState {
   params: SearchParams | null;
   histograms: Histogram[];
   ids: string[];
-  docs: any[];
+  docs: Doc[];
   loading: boolean;
   error: string | null;
   hasMore: boolean;
@@ -37,7 +52,7 @@ const initialState: SearchState = {
 };
 
 const searchSlice = createSlice({
-  name: 'search',
+  name: "search",
   initialState,
   reducers: {
     setParams(state, action: PayloadAction<SearchParams>) {
@@ -51,7 +66,7 @@ const searchSlice = createSlice({
       state.loadedCount = 0;
       state.hasMore = action.payload.length > 0;
     },
-    addDocs(state, action: PayloadAction<any[]>) {
+    addDocs(state, action: PayloadAction<Doc[]>) {
       state.docs = [...state.docs, ...action.payload];
       state.loadedCount += action.payload.length;
       state.hasMore = state.loadedCount < state.ids.length;
@@ -75,5 +90,13 @@ const searchSlice = createSlice({
   },
 });
 
-export const { setParams, setHistograms, setIds, addDocs, setLoading, setError, resetSearch } = searchSlice.actions;
+export const {
+  setParams,
+  setHistograms,
+  setIds,
+  addDocs,
+  setLoading,
+  setError,
+  resetSearch,
+} = searchSlice.actions;
 export default searchSlice.reducer;

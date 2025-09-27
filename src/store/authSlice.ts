@@ -1,139 +1,154 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
+type AuthStatus = "unauthorized" | "authorized" | "loading" | "error";
 interface AuthState {
-  accessToken: string | null;
-  expire: string | null;
-  accountInfo: any | null;
-  status: "idle" | "loading" | "authorized" | "unauthorized" | "error";
-  error: string | null;
-  usedCompanyCount?: number;
-  companyLimit?: number;
-  userLogin?: string;
+  accessToken?: string;
+  expire?: string;
+  status: AuthStatus;
+  accountInfo?: {
+    eventFiltersInfo?: {
+      usedCompanyCount?: number;
+      companyLimit?: number;
+    };
+  };
+  userLogin: string | null;
+  usedCompanyCount: number | null;
+  companyLimit: number | null;
 }
-
 interface SetFromStoragePayload {
-  accessToken: string | null;
-  expire: string | null;
-  accountInfo: any | null;
-  usedCompanyCount?: number;
-  companyLimit?: number;
+  accessToken?: string;
+  expire?: string;
   userLogin?: string;
+  accountInfo?: {
+    eventFiltersInfo?: {
+      usedCompanyCount?: number;
+      companyLimit?: number;
+    };
+  };
 }
 
 const initialState: AuthState = {
-  accessToken: null,
-  expire: null,
-  accountInfo: null,
-  status: "idle",
-  error: null,
-  usedCompanyCount: undefined,
-  companyLimit: undefined,
-  userLogin: undefined,
+  accessToken: undefined,
+  expire: undefined,
+  status: "unauthorized",
+  accountInfo: undefined,
+  userLogin: null,
+  usedCompanyCount: null,
+  companyLimit: null,
 };
 
-export const login = createAsyncThunk(
-  "auth/login",
-  async (
-    { login, password }: { login: string; password: string },
-    thunkAPI
-  ) => {
-    const res = await fetch(
-      "https://gateway.scan-interfax.ru/api/v1/account/login",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ login, password }),
-      }
-    );
-    if (!res.ok) throw new Error("Ошибка авторизации");
-    const data = await res.json();
-    if (!data.accessToken || !data.expire)
-      throw new Error("Неверный ответ сервера");
-
-    const infoRes = await fetch(
-      "https://gateway.scan-interfax.ru/api/v1/account/info",
-      {
-        headers: { Authorization: `Bearer ${data.accessToken}` },
-      }
-    );
-    const accountInfo = infoRes.ok ? await infoRes.json() : null;
-
-    return { ...data, accountInfo };
+export const login = createAsyncThunk<
+  { accessToken: string; expire: string }, // payload on success
+  { login: string; password: string }, // args
+  { rejectValue: string }
+>("auth/login", async (body, { rejectWithValue }) => {
+  const res = await fetch(
+    "https://gateway.scan-interfax.ru/api/v1/account/login",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    }
+  );
+  if (!res.ok) {
+    const text = await res.text();
+    return rejectWithValue(text || "Auth failed");
   }
-);
+  const data = await res.json();
+  // синхронизируем localStorage
+  localStorage.setItem("accessToken", data.accessToken);
+  localStorage.setItem("expire", data.expire);
+  return data;
+});
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    logout(state) {
-      state.accessToken = null;
-      state.expire = null;
-      state.accountInfo = null;
-      state.status = "unauthorized";
-      state.error = null;
-      state.usedCompanyCount = undefined;
-      state.companyLimit = undefined;
-      state.userLogin = undefined;
-      localStorage.clear();
-    },
-    setFromStorage(state, action: { payload: SetFromStoragePayload }) {
-      state.accessToken = action.payload.accessToken;
-      state.expire = action.payload.expire;
-      state.accountInfo = action.payload.accountInfo;
-      state.status = action.payload.accessToken ? "authorized" : "unauthorized";
+    setFromStorage(state, { payload }: { payload: SetFromStoragePayload }) {
+      state.accessToken = payload.accessToken ?? undefined;
+      state.expire = payload.expire ?? undefined;
+      state.status = payload.accessToken ? "authorized" : "unauthorized";
+      state.accountInfo = payload.accountInfo;
 
-      if (action.payload.accountInfo) {
-        state.usedCompanyCount = action.payload.accountInfo.usedCompanyCount;
-        state.companyLimit = action.payload.accountInfo.companyLimit;
-        state.userLogin = action.payload.accountInfo.userLogin;
-      } else {
-        state.usedCompanyCount = action.payload.usedCompanyCount;
-        state.companyLimit = action.payload.companyLimit;
-        state.userLogin = action.payload.userLogin;
-      }
+      state.userLogin = payload.userLogin ?? state.userLogin ?? null;
+
+      const efi = payload.accountInfo?.eventFiltersInfo;
+      state.usedCompanyCount =
+        efi?.usedCompanyCount ?? state.usedCompanyCount ?? null;
+      state.companyLimit = efi?.companyLimit ?? state.companyLimit ?? null;
     },
-    setProfileInfo(state, action) {
-      state.usedCompanyCount = action.payload.usedCompanyCount;
-      state.companyLimit = action.payload.companyLimit;
+
+    setStatus(state, { payload }: PayloadAction<AuthStatus>) {
+      state.status = payload;
     },
-    setUserLogin(state, action) {
-      state.userLogin = action.payload;
+
+    setUserLogin(state, { payload }: PayloadAction<string | undefined>) {
+      state.userLogin = payload ?? null;
+      if (payload) localStorage.setItem("userLogin", payload);
+      else localStorage.removeItem("userLogin");
+    },
+
+    setProfileInfo(
+      state,
+      {
+        payload,
+      }: PayloadAction<{ usedCompanyCount?: number; companyLimit?: number }>
+    ) {
+      const { usedCompanyCount, companyLimit } = payload;
+      state.usedCompanyCount = usedCompanyCount ?? state.usedCompanyCount;
+      state.companyLimit = companyLimit ?? state.companyLimit;
+
+      // синхронизируем accountInfo в localStorage, если ты его там хранишь
+      const ai = state.accountInfo ?? {};
+      const next = {
+        ...ai,
+        eventFiltersInfo: {
+          ...(ai.eventFiltersInfo ?? {}),
+          usedCompanyCount: state.usedCompanyCount ?? undefined,
+          companyLimit: state.companyLimit ?? undefined,
+        },
+      };
+      state.accountInfo = next;
+      localStorage.setItem("accountInfo", JSON.stringify(next));
+    },
+
+    logout(state) {
+      state.accessToken = undefined;
+      state.expire = undefined;
+      state.status = "unauthorized";
+      state.accountInfo = undefined;
+      state.userLogin = null;
+      state.usedCompanyCount = null;
+      state.companyLimit = null;
+      ["accessToken", "expire", "accountInfo", "userLogin"].forEach((k) =>
+        localStorage.removeItem(k)
+      );
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(login.pending, (state) => {
         state.status = "loading";
-        state.error = null;
       })
-      .addCase(login.fulfilled, (state, action) => {
-        state.accessToken = action.payload.accessToken;
-        state.expire = action.payload.expire;
-        state.accountInfo = action.payload.accountInfo;
+      .addCase(login.fulfilled, (state, { payload }) => {
         state.status = "authorized";
-        state.error = null;
-
-        if (action.payload.accountInfo) {
-          state.usedCompanyCount = action.payload.accountInfo.usedCompanyCount;
-          state.companyLimit = action.payload.accountInfo.companyLimit;
-          state.userLogin = action.payload.accountInfo.userLogin;
-        }
-
-        localStorage.setItem("accessToken", action.payload.accessToken);
-        localStorage.setItem("expire", action.payload.expire);
-        localStorage.setItem(
-          "accountInfo",
-          JSON.stringify(action.payload.accountInfo)
-        );
+        state.accessToken = payload.accessToken;
+        state.expire = payload.expire;
       })
-      .addCase(login.rejected, (state, action) => {
-        state.status = "error";
-        state.error = action.error.message || "Ошибка авторизации";
+      .addCase(login.rejected, (state) => {
+        state.status = "error"; // или "unauthorized"
+        state.accessToken = undefined;
+        state.expire = undefined;
       });
   },
 });
 
-export const { logout, setFromStorage, setProfileInfo, setUserLogin } =
-  authSlice.actions;
+export const {
+  setFromStorage,
+  setStatus,
+  setUserLogin,
+  setProfileInfo,
+  logout,
+} = authSlice.actions;
 export default authSlice.reducer;

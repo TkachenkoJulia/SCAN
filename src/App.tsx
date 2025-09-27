@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Toaster } from "react-hot-toast";
-import { Routes, Route, Navigate } from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import withLayout from "./hoc/Layout/Layout";
 import Main from "./pages/Main";
 import Auth from "./pages/Auth";
@@ -19,20 +19,19 @@ function App() {
   const auth = useAppSelector((state) => state.auth);
 
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
-    const expire = localStorage.getItem("expire");
-    const accountInfo = JSON.parse(
-      localStorage.getItem("accountInfo") || "null"
-    );
+    const accessToken = localStorage.getItem("accessToken") ?? undefined;
+    const expire = localStorage.getItem("expire") ?? undefined;
+    const userLogin = localStorage.getItem("userLogin") ?? undefined;
+
+    const accountInfoStr = localStorage.getItem("accountInfo");
+    const accountInfo = accountInfoStr ? JSON.parse(accountInfoStr) : undefined;
     if (accessToken && expire) {
       dispatch(
         setFromStorage({
           accessToken,
           expire,
+          userLogin,
           accountInfo,
-          usedCompanyCount: accountInfo?.usedCompanyCount,
-          companyLimit: accountInfo?.companyLimit,
-          userLogin: accountInfo?.userLogin,
         })
       );
     }

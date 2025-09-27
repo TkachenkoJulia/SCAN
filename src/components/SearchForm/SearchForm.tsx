@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { setParams, setHistograms } from "../../store/searchSlice";
 import styles from "./SearchForm.module.css";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const validateInn = (inn: string, error: { code: number; message: string }) => {
   var result = false;
@@ -131,7 +131,6 @@ const SearchForm: React.FC = () => {
         document.getElementById("excludeDigests") as HTMLInputElement
       )?.checked;
 
-      const pad = (n: number) => n.toString().padStart(2, "0");
       const formatDate = (d: string, start: boolean) => {
         if (!d) return "";
         const [year, month, day] = d.split("-");

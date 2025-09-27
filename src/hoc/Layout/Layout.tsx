@@ -1,17 +1,21 @@
 import React from "react";
-import styles from "./Layout.module.css";
-import global from '../../global.module.css';
+import global from "../../global.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import styles from "./Layout.module.css";
 
 // HOC: принимает компонент и возвращает обёрнутый
-function withLayout<P>(WrappedComponent: React.ComponentType<P>): React.FC<React.PropsWithChildren<P>> {
+function withLayout<P>(
+  WrappedComponent: React.ComponentType<P>
+): React.FC<React.PropsWithChildren<P>> {
   return (props: React.PropsWithChildren<P>) => (
-    <div>
+    <div className={styles.appLayout}>
       <Header />
-      <div className={global.container}>
-        <WrappedComponent {...props} />
-      </div>
+      <main className={styles.mainContent}>
+        <div className={global.container}>
+          <WrappedComponent {...props} />
+        </div>
+      </main>
       <Footer />
     </div>
   );
